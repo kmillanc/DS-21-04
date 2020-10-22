@@ -20,15 +20,15 @@ public class Code {
             unoOK = true;
         }
 
-        for(int i = 1; i <= keypad.length; i++){
+        /*for(int i = 1; i <= keypad.length; i++){
             if(keypad[i - 1].length != keypad[i].length){
                 dosOK = false;
             }else{
                 dosOK = true;
             }
-        }
+        }*/
 
-        for(int i = 1; i <= keypad.length; i++){
+      /*  for(int i = 1; i <= keypad.length; i++){
             for(int j = 1; j <= keypad[0].length; j++){
                 if ((keypad[i - 1][j - 1] < keypad[i - 1][j - 1])&&(keypad[i - 1][j - 1] < keypad[i][j - 1])){
                     tresOK = true;
@@ -36,7 +36,7 @@ public class Code {
                     tresOK = false;
                 }
             }
-        }
+        }*/
 
         if(unoOK && dosOK && tresOK){
             OK = true;
@@ -59,11 +59,11 @@ public class Code {
     public static boolean areMovementsValid(String[] movements){
 
         for(int i = 0; i <= movements.length; i++){
-            if((movements[i].contains("U"))||(movements[i].contains("D"))||(movements[i].contains("L"))||(movements[i].contains("R"))){
-                return true;
+            if((!movements[i].matches(".*[^UDLR].*"))){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 

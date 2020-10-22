@@ -63,13 +63,13 @@ class CodeTest {
                 {'4', 'f', '6'},
                 {'7', '8', '1'}};
 
-      //  assertFalse(Code.isKeypadValid(wrongDuplicates));
-      //  assertFalse(Code.isKeypadValid(wrongNotSequence));
-      //  assertFalse(Code.isKeypadValid(wrongNull));
-      //  assertFalse(Code.isKeypadValid(wrongNoValidChar));
-      //  assertFalse(Code.isKeypadValid(null));
+        assertFalse(Code.isKeypadValid(wrongDuplicates));
+        assertFalse(Code.isKeypadValid(wrongNotSequence));
+        assertFalse(Code.isKeypadValid(wrongNull));
+        assertFalse(Code.isKeypadValid(wrongNoValidChar));
+        assertFalse(Code.isKeypadValid(null));
 
-      //  assertTrue(Code.isKeypadValid(keypad1));
+        assertTrue(Code.isKeypadValid(keypad1));
         assertTrue(Code.isKeypadValid(keypad2));
         assertTrue(Code.isKeypadValid(keypad3));
         assertTrue(Code.isKeypadValid(keypad4));
