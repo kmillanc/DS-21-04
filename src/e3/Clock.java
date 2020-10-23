@@ -1,9 +1,20 @@
 package e3;
-
 import java.time.Period;
 import java.lang.IllegalArgumentException;
-
 public class Clock {
+    public enum Period{
+        AM, PM
+    }
+    public Period periodo;
+    int horas, minutos, segundos;
+
+    public Period getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(Period periodo) {
+        this.periodo = periodo;
+    }
 
     /**
      * Creates a Clock instance parsing a String .
@@ -13,8 +24,30 @@ public class Clock {
      */
 
     public Clock(String s){
+        if(s.length() == 11) {
+            for (int i = 0; i < s.length(); i++) {
+                s = s.replaceAll(" ", ":");
+            }
+        }
+        String[] parts = s.split(":");
 
-        throw new IllegalArgumentException("The String is not a valid hour");
+        if(s.length() < 8 || s.length() > 11) {
+            throw new IllegalArgumentException("The String is not a valid hour");
+        }
+        else if((s.length() == 8) && (Integer.parseInt(parts[0]) < 24) && (Integer.parseInt(parts[1]) < 60) && (Integer.parseInt(parts[2]) < 60) && (Integer.parseInt(parts[0]) >= 0) && (Integer.parseInt(parts[1]) >= 0) && (Integer.parseInt(parts[2]) >= 0)){
+            horas = Integer.parseInt(parts[0]);
+            minutos = Integer.parseInt(parts[1]);
+            segundos = Integer.parseInt(parts[2]);
+        }
+        else if(s.length() == 11 && (Integer.parseInt(parts[0]) < 13) && (Integer.parseInt(parts[1]) < 60) && (Integer.parseInt(parts[2]) < 60) && (Integer.parseInt(parts[0]) >= 0) && (Integer.parseInt(parts[1]) >= 0) && (Integer.parseInt(parts[2]) >= 0) && (parts[3].equals("PM")||parts[3].equals("AM"))){
+            horas = Integer.parseInt(parts[0]);
+            minutos = Integer.parseInt(parts[1]);
+            segundos = Integer.parseInt(parts[2]);
+            //periodo = parts[3];
+        }
+        else {
+            throw new IllegalArgumentException("The String is not a valid hour");
+        }
     }
 
     /**
@@ -27,8 +60,16 @@ public class Clock {
      */
 
     public Clock(int hours, int minutes, int seconds){
-
-        throw new IllegalArgumentException("The value is not a valid hour");
+        if((hours < 0)||(hours > 23)||(minutes < 0)||(minutes > 59)||(seconds < 0)||(seconds > 59)) {
+            throw new IllegalArgumentException("The value is not a valid hour");
+        }else{
+            int resultHours = hours;
+            int resultMin = minutes;
+            int resultSec = seconds;
+            minutos = resultMin;
+            horas = resultHours;
+            segundos = resultSec;
+        }
     }
 
     /**
@@ -43,8 +84,17 @@ public class Clock {
      */
 
     public Clock(int hours, int minutes, int seconds, Period period){
-
-        throw new IllegalArgumentException("The value is not a valid hour");
+        if((hours < 0)||(hours > 12)||(minutes < 0)||(minutes > 59)||(seconds < 0)||(seconds > 59)||(!period.toString().equals("AM"))||(!period.toString().equals("PM"))) {
+            throw new IllegalArgumentException("The value is not a valid hour");
+        }else{
+            int resultHours = hours;
+            int resultMin = minutes;
+            int resultSec = seconds;
+            minutos = resultMin;
+            horas = resultHours;
+            segundos = resultSec;
+            //periodo = ;
+        }
     }
 
     /**
@@ -53,7 +103,15 @@ public class Clock {
      */
 
     public int getHours24(){
-
+        if(periodo.equals(Period.PM)){
+            return horas + 12;
+        }
+        else if((periodo.equals(Period.AM))&&(horas == 12)){
+            return 0;
+        }
+        else {
+            return horas;
+        }
     }
 
     /**
@@ -62,7 +120,12 @@ public class Clock {
      */
 
     public int getHours12(){
-
+        if(horas < 13){
+            return horas;
+        }
+        else {
+            return horas - 12;
+        }
     }
 
     /**
@@ -71,7 +134,7 @@ public class Clock {
      */
 
     public int getMinutes(){
-
+        return minutos;
     }
 
     /**
@@ -80,7 +143,7 @@ public class Clock {
      */
 
     public int getSeconds(){
-
+        return segundos;
     }
 
     /**
@@ -90,7 +153,6 @@ public class Clock {
      */
 
     public int getPeriod(){
-
     }
 
     /**
@@ -100,7 +162,6 @@ public class Clock {
      */
 
     public String printHour24(){
-
     }
 
     /**
@@ -110,7 +171,6 @@ public class Clock {
      */
 
     public String printHour12(){
-
     }
 
     /**
@@ -123,7 +183,6 @@ public class Clock {
 
     @Override
     public boolean equals(Object o){
-
     }
 
     /**
@@ -135,6 +194,6 @@ public class Clock {
 
     @Override
     public int hashCode(){
-
     }
+
 }
