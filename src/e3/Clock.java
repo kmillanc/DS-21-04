@@ -238,9 +238,11 @@ public class Clock {
     @Override
     public int hashCode(){
         int result;
+        horas = getHours24();
         result = horas;
         result = 31 * result + minutos;
         result = 31 * result + segundos;
+        periodo = getPeriod();
         result = 31 * result + (String.valueOf(periodo).hashCode());
         return result;
     }
