@@ -212,18 +212,19 @@ public class Clock {
 
     @Override
     public boolean equals(Object o){
-        periodo = this.getPeriod();
-        horas = this.getHours24();
         if(this == o) {
             return true;
         }
         else if(o == null){
             return false;
         }
-        else if(this.getClass() == o.getClass()) {
-            return true;
+        else if(this.getClass() != o.getClass()) {
+            return false;
         }
-        else {
+        Clock clock = (Clock) o;
+        if((this.getClass() == o.getClass()) && (this.getPeriod() == clock.getPeriod())){
+            return true;
+        }else {
             return false;
         }
     }
