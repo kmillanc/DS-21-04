@@ -96,7 +96,7 @@ class CodeTest {
         assertTrue(Code.areMovementsValid(input2));
     }
 
-  /*  @Test
+    @Test
     void obtainCodeTest() {
         assertEquals("5347", Code.obtainCode(keypad3, input0));
 
@@ -115,5 +115,5 @@ class CodeTest {
         assertEquals("57977", Code.obtainCode(keypad5, input2));
         assertEquals("23333", Code.obtainCode(keypad6, input2));
         assertEquals("21311", Code.obtainCode(keypad7, input2));
-    }*/
+    }
 }

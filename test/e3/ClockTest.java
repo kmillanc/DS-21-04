@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClockTest {
-/*
+
     @BeforeEach
     void setUp() {
 
@@ -114,5 +114,5 @@ class ClockTest {
 
         assertEquals(c2.hashCode(), c1.hashCode());
         assertTrue(c1.hashCode() != c3.hashCode());
-    }*/
+    }
 }
